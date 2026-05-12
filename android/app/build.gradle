@@ -76,7 +76,11 @@ android {
         release {
             // Usa el keystore de release si está configurado en key.properties,
             // de lo contrario usa debug para desarrollo local.
-            signingConfig (keystoreProperties['keyAlias'] != null) ? signingConfigs.release : signingConfigs.debug
+            if (keystoreProperties['keyAlias'] != null) {
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
