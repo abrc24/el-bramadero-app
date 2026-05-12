@@ -6,14 +6,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:ui';
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'perfil_model.dart';
 export 'perfil_model.dart';
 
@@ -265,28 +262,10 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
-                                      child: currentUserPhoto.isNotEmpty
-                                          ? Image.network(
-                                              currentUserPhoto,
-                                              fit: BoxFit.cover,
-                                              errorBuilder: (context, error,
-                                                      stackTrace) =>
-                                                  Icon(
-                                                    Icons.person,
-                                                    size: 60,
-                                                    color:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondaryText,
-                                                  ),
-                                            )
-                                          : Icon(
-                                              Icons.person,
-                                              size: 60,
-                                              color: FlutterFlowTheme.of(
-                                                      context)
-                                                  .secondaryText,
-                                            ),
+                                      child: Image.network(
+                                        currentUserPhoto,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -950,12 +929,6 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        if (_model.formKey.currentState ==
-                                                null ||
-                                            !_model.formKey.currentState!
-                                                .validate()) {
-                                          return;
-                                        }
                                         await currentUserReference!
                                             .update(createUsersRecordData(
                                           displayName:
@@ -965,30 +938,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                           ciudad:
                                               _model.ciudadTextController.text,
                                           photoUrl: _model
-                                                  .uploadedFileUrl_uploadDataBeg
-                                                  .isNotEmpty
-                                              ? _model
-                                                  .uploadedFileUrl_uploadDataBeg
-                                              : currentUserPhoto,
+                                              .uploadedFileUrl_uploadDataBeg,
                                         ));
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Perfil actualizado correctamente',
-                                              style: TextStyle(
-                                                color: FlutterFlowTheme.of(
-                                                        context)
-                                                    .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                Duration(milliseconds: 3000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
-                                        );
                                       },
                                       text: 'Guardar Cambios',
                                       options: FFButtonOptions(

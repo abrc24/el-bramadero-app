@@ -5,16 +5,11 @@ import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'login2_model.dart';
 export 'login2_model.dart';
 
@@ -1111,12 +1106,8 @@ class _Login2WidgetState extends State<Login2Widget>
                                                           .showSnackBar(
                                                         SnackBar(
                                                           content: Text(
-                                                            '¡Las contraseñas no coinciden!',
+                                                            'Passwords don\'t match!',
                                                           ),
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .error,
                                                         ),
                                                       );
                                                       return;
@@ -1140,12 +1131,8 @@ class _Login2WidgetState extends State<Login2Widget>
                                                         .doc(user.uid)
                                                         .update(
                                                             createUsersRecordData(
-                                                          displayName: _model
-                                                              .textController2
-                                                              .text,
-                                                          phoneNumber: _model
-                                                              .textController3
-                                                              .text,
+                                                          displayName: '',
+                                                          phoneNumber: '',
                                                         ));
 
                                                     await currentUserReference!

@@ -3,10 +3,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'recuperarpsw_model.dart';
 export 'recuperarpsw_model.dart';
 
@@ -30,8 +28,8 @@ class _RecuperarpswWidgetState extends State<RecuperarpswWidget> {
     super.initState();
     _model = createModel(context, () => RecuperarpswModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.correoTextController ??= TextEditingController();
+    _model.correoFocusNode ??= FocusNode();
   }
 
   @override
@@ -111,7 +109,7 @@ class _RecuperarpswWidgetState extends State<RecuperarpswWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 20.0),
                             child: Text(
-                              'Escribe tu correo electrónico registrado y da clic en Recuperar contraseña. Te haremos llegar un correo con las instrucciones.',
+                              'Escribe los datos solicitados y da clic en Recuper contraseña, a continuación te haremos llegar un correo.',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -140,8 +138,8 @@ class _RecuperarpswWidgetState extends State<RecuperarpswWidget> {
                           child: Container(
                             width: 300.0,
                             child: TextFormField(
-                              controller: _model.textController,
-                              focusNode: _model.textFieldFocusNode,
+                              controller: _model.correoTextController,
+                              focusNode: _model.correoFocusNode,
                               autofocus: false,
                               enabled: true,
                               obscureText: false,
@@ -242,48 +240,27 @@ class _RecuperarpswWidgetState extends State<RecuperarpswWidget> {
                               cursorColor:
                                   FlutterFlowTheme.of(context).primaryText,
                               enableInteractiveSelection: true,
-                              validator: _model.textControllerValidator
+                              validator: _model.correoTextControllerValidator
                                   .asValidator(context),
                             ),
                           ),
                         ),
                         FFButtonWidget(
                           onPressed: () async {
-                            if (_model.formKey.currentState == null ||
-                                !_model.formKey.currentState!.validate()) {
-                              return;
-                            }
-                            if (_model.textController.text.isEmpty) {
+                            if (_model.correoTextController.text.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    'Por favor ingresa tu correo electrónico.',
+                                    'Email required!',
                                   ),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).error,
                                 ),
                               );
                               return;
                             }
                             await authManager.resetPassword(
-                              email: _model.textController.text,
+                              email: _model.correoTextController.text,
                               context: context,
                             );
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Se envió un correo de recuperación a ${_model.textController.text}',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
-                            );
-                            context.pop();
                           },
                           text: 'Recuperar contraseña',
                           options: FFButtonOptions(
