@@ -32,8 +32,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.mycompany.elbramadero"
-    compileSdkVersion 35
-    ndkVersion "27.0.12077973"
+    compileSdkVersion 36
 
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -83,8 +82,13 @@ android {
             }
             minifyEnabled false
             shrinkResources false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    packagingOptions {
+        doNotStrip "**/*.so"
     }
 }
 
