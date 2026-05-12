@@ -1,0 +1,39 @@
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+pubspec.lock
+
+# Android
+android/key.properties
+android/keystore/*.jks
+android/keystore/*.keystore
+android/local.properties
+android/app/google-services.json
+
+# iOS
+ios/Flutter/flutter_export_environment.sh
+ios/Runner/GeneratedPluginRegistrant.m
+ios/Pods/
+ios/Runner/GoogleService-Info.plist
+*.xcworkspace/xcuserdata/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# macOS
+.DS_Store
+
+# Firebase (contiene claves sensibles - NO subir a GitHub público)
+# Si tu repo es PRIVADO, puedes comentar estas líneas:
+# android/app/google-services.json
+# ios/Runner/GoogleService-Info.plist
+
+# Archivos generados
+lib/generated_plugin_registrant.dart
