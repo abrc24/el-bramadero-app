@@ -33,6 +33,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace "com.mycompany.elbramadero"
     compileSdkVersion 36
+    ndkVersion "28.2.13676358"
 
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -87,9 +88,6 @@ android {
         }
     }
 
-    packagingOptions {
-        doNotStrip "**/*.so"
-    }
 }
 
 flutter {
