@@ -32,8 +32,8 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.mycompany.elbramadero"
-    compileSdkVersion 36
-    ndkVersion "28.2.13676358"
+    compileSdkVersion 35
+    ndkVersion "27.0.12077973"
 
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -57,8 +57,8 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.mycompany.elbramadero"
-        minSdkVersion 23
-        targetSdkVersion 36
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -76,9 +76,7 @@ android {
         release {
             // Usa el keystore de release si está configurado en key.properties,
             // de lo contrario usa debug para desarrollo local.
-            signingConfig keystoreProperties['keyAlias'] != null
-                ? signingConfigs.release
-                : signingConfigs.debug
+            signingConfig (keystoreProperties['keyAlias'] != null) ? signingConfigs.release : signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
