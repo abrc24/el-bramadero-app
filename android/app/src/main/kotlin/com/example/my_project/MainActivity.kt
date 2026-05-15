@@ -1,4 +1,4 @@
-package com.mycompany.elbramadero
+package mx.bramadero.app
 
 import io.flutter.embedding.android.FlutterActivity
 
